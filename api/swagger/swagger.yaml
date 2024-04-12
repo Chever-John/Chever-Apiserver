@@ -1,2 +1,18 @@
+basePath: /
+consumes:
+    - application/json
+host: some-url.com
+info:
+    description: Documentation of our awesome API.
+    title: awesome.
+    version: 0.1.0
 paths: {}
+produces:
+    - application/json
+schemes:
+    - http
+    - https
+securityDefinitions:
+    basic:
+        type: basic
 swagger: "2.0"
