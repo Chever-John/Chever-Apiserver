@@ -3,7 +3,7 @@
 
 # options for analysis running
 run:
-  # default concurrency is a available CPU number
+  # default concurrency is an available CPU number
   concurrency: 4
 
   # timeout for analysis, e.g. 30s, 5m, default is 1m
@@ -18,17 +18,6 @@ run:
   # list of build tags, all linters use it. Default is empty list.
   build-tags:
     - mytag
-
-  # which dirs to skip: issues from them won't be reported;
-  # can use regexp here: generated.*, regexp is applied on full path;
-  # default value is empty list, but default dirs are skipped independently
-  # of this option's value (see skip-dirs-use-default).
-  # "/" will be replaced by current OS file path separator to properly work
-  # on Windows.
-  skip-dirs:
-    - util
-    - .*~
-    - api/swagger/docs
 
   # default is true. Enables skipping of directories:
   #   vendor$, third_party$, testdata$, examples$, Godeps$, builtin$
@@ -502,7 +491,7 @@ linters-settings:
     ignore-words:
       - someword
   nakedret:
-    # make an issue if func has more lines of code than this setting and it has naked returns; default is 30
+    # make an issue if func has more lines of code than this setting, and it has naked returns; default is 30
     max-func-lines: 30
 
   nestif:
@@ -670,7 +659,7 @@ linters-settings:
 
   wsl:
     # If true append is only allowed to be cuddled if appending value is
-    # matching variables, fields or types on line above. Default is true.
+    # matching variables, fields or types online above. Default is true.
     strict-append: true
     # Allow calls and assignments to be cuddled as long as the lines have any
     # matching variables, fields or types. Default is true.
@@ -797,13 +786,25 @@ linters:
 
 issues:
   # List of regexps of issue texts to exclude, empty list by default.
-  # But independently from this option we use default exclude patterns,
+  # But independently of this option we use default exclude patterns,
   # it can be disabled by `exclude-use-default: false`. To list all
   # excluded by default patterns execute `golangci-lint run --help`
   exclude:
     - tools/.*
     - test/.*
     - third_party/.*
+
+  # which dirs to skip: issues from them won't be reported;
+  # can use regexp here: generated.*, regexp is applied on full path;
+  # default value is empty list, but default dirs are skipped independently
+  # of this option's value (see skip-dirs-use-default).
+  # "/" will be replaced by current OS file path separator to properly work
+  # on Windows.
+  exclude-dirs:
+    - util
+    - .*~
+    - api/swagger/docs
+
 
   # Excluding configuration per-path, per-linter, per-text and per-source
   exclude-rules:
@@ -863,7 +864,7 @@ issues:
         - lll
       source: "^//go:generate "
 
-  # Independently from option `exclude` we use default exclude patterns,
+  # Independently of option `exclude` we use default exclude patterns,
   # it can be disabled by this option. To list all
   # excluded by default patterns execute `golangci-lint run --help`.
   # Default value for this option is true.
@@ -873,7 +874,7 @@ issues:
   # regular expressions become case sensitive.
   exclude-case-sensitive: false
 
-  # The list of ids of default excludes to include or disable. By default it's empty.
+  # The list of ids of default excludes to include or disable. By default, it's empty.
   include:
     - EXC0002 # disable excluding of issues about comments from golint
 
@@ -912,7 +913,7 @@ severity:
   default-severity: error
 
   # The default value is false.
-  # If set to true severity-rules regular expressions become case sensitive.
+  # If set to true severity-rules regular expressions become case-sensitive.
   case-sensitive: false
 
   # Default value is empty list.
