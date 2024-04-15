@@ -274,7 +274,7 @@ linters-settings:
       regexp:
       # define here regexp type values, for example
       # AUTHOR: .*@mycompany\.com
-    template: # |-
+    # template: # |-
     # put here copyright header template for source code files, for example:
     # Note: {{ YEAR }} is a builtin value that returns the year relative to the current machine time.
     #
@@ -292,24 +292,29 @@ linters-settings:
     # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     # See the License for the specific language governing permissions and
     # limitations under the License.
-    template-path:
     # also as alternative of directive 'template' you may put the path to file with the template source
+    template-path: scripts/boilerplate.txt
 
   goimports:
     # put imports beginning with prefix after 3rd-party packages;
     # it's a comma-separated list of prefixes
     local-prefixes: github.com/Chever-John/cas
-  golint:
-    # minimal confidence for issues, default is 0.8
-    min-confidence: 0.9
+
   gomnd:
-    settings:
-      mnd:
-        # the list of enabled checks, see https://github.com/tommy-muehle/go-mnd/#checks for description.
-        checks: argument,case,condition,operation,return,assign
-        # ignored-numbers: 1000
-        # ignored-files: magic_.*.go
-        # ignored-functions: math.*
+    checks:
+      - argument
+      - case
+      - condition
+      - operation
+      - return
+      - assign
+    ignored-numbers:
+      - '1000'
+    ignored-files:
+      - magic_.*.go
+    ignored-functions:
+      - '^math\.'
+
   gomoddirectives:
     # Allow local `replace` directives. Default is false.
     replace-local: true
@@ -387,9 +392,6 @@ linters-settings:
     checks: [ "all" ]
 
   govet:
-    # report about shadowed variables
-    check-shadowing: true
-
     # settings per analyzer
     settings:
       printf: # analyzer name, run `go tool vet help` to see all analyzers
@@ -398,6 +400,8 @@ linters-settings:
           - (github.com/golangci/golangci-lint/pkg/logutils.Log).Warnf
           - (github.com/golangci/golangci-lint/pkg/logutils.Log).Errorf
           - (github.com/golangci/golangci-lint/pkg/logutils.Log).Fatalf
+      shadow:
+        strict: true
 
     # enable or disable analyzers by name
     enable:
@@ -406,6 +410,7 @@ linters-settings:
     disable:
       - shadow
     disable-all: false
+
   depguard:
     rules:
       main:
@@ -436,10 +441,6 @@ linters-settings:
       # see https://github.com/julz/importas#use-regular-expression for details
       - pkg: knative.dev/serving/pkg/apis/(\w+)/(v[\w\d]+)
         alias: $1$2
-    # using `jwt` alias for `github.com/appleboy/gin-jwt/v2` package
-    jwt: github.com/appleboy/gin-jwt/v2
-    # using `metav1` alias for `github.com/Chever-John/component-base/pkg/meta/v1` package
-    metav1: github.com/Chever-John/component-base/pkg/meta/v1
 
   ireturn:
     # ireturn allows using `allow` and `reject` settings at the same time.
@@ -470,9 +471,7 @@ linters-settings:
     line-length: 240
     # tab width in spaces. Default to 1.
     tab-width: 4
-  maligned:
-    # print struct with more effective memory layout or not, false by default
-    suggest-new: true
+
   misspell:
     # Correct spellings using locale preferences for US or UK.
     # Default is to use a neutral variety of English.
@@ -505,8 +504,6 @@ linters-settings:
   nolintlint:
     # Disable to ensure that all nolint directives actually have an effect. Default is true.
     allow-unused: false
-    # Disable to ensure that nolint directives don't have a leading space. Default is true.
-    allow-leading-space: true
     # Exclude following linters from requiring an explanation.  Default is [].
     allow-no-explanation: [ ]
     # Enable to require an explanation of nonzero length after each nolint directive. Default is false.
@@ -530,14 +527,14 @@ linters-settings:
     strict: false
     # Please refer to https://github.com/yeya24/promlinter#usage for detailed usage.
     disabled-linters:
-    #  - "Help"
-    #  - "MetricUnits"
-    #  - "Counter"
-    #  - "HistogramSummaryReserved"
-    #  - "MetricTypeInName"
-    #  - "ReservedChars"
-    #  - "CamelCase"
-    #  - "lintUnitAbbreviations"
+      - "Help"
+      - "MetricUnits"
+      - "Counter"
+      - "HistogramSummaryReserved"
+      - "MetricTypeInName"
+      - "ReservedChars"
+      - "CamelCase"
+      - "UnitAbbreviations"
 
   predeclared:
     # comma-separated list of predeclared identifiers to not report on
@@ -625,7 +622,8 @@ linters-settings:
     # XXX: if you enable this setting, unused will report a lot of false-positives in text editors:
     # if it's called for subdir of a project it can't find funcs usages. All text editor integrations
     # with golangci-lint call it on a directory with the changed file.
-    check-exported: false
+    exported-is-used: true
+
   whitespace:
     multi-if: false   # Enforces newlines (or comments) after every multi-line if statement
     multi-func: false # Enforces newlines (or comments) after every multi-line function signature
