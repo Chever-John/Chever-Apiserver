@@ -7,6 +7,8 @@
 
 # options for analysis running
 run:
+  go: "1.22" # Go version to use. Default is the version of the go command.
+
   # default concurrency is an available CPU number
   concurrency: 4
 
@@ -137,7 +139,8 @@ linters-settings:
     # put imports beginning with prefix after 3rd-party packages;
     # only support one prefix
     # if not set, use goimports.local-prefixes
-    local-prefixes: github.com/Chever-John/cas
+    sections:
+      - prefix(github.com/Chever-John/cas)
 
   gocognit:
     # minimal code complexity to report, 30 by default (but we recommend 10-20)
@@ -259,9 +262,6 @@ linters-settings:
     simplify: true
 
   gofumpt:
-    # Select the Go version to target. The default is `1.15`.
-    lang-version: "1.15"
-
     # Choose whether to use the extra rules that are disabled
     # by default
     extra-rules: false
@@ -386,8 +386,6 @@ linters-settings:
         truncate: "32"
 
   gosimple:
-    # Select the Go version to target. The default is '1.13'.
-    go: "1.15"
     # https://staticcheck.io/docs/options#checks
     checks: [ "all" ]
 
@@ -400,9 +398,6 @@ linters-settings:
           - (github.com/golangci/golangci-lint/pkg/logutils.Log).Warnf
           - (github.com/golangci/golangci-lint/pkg/logutils.Log).Errorf
           - (github.com/golangci/golangci-lint/pkg/logutils.Log).Fatalf
-      shadow:
-        strict: true
-
     # enable or disable analyzers by name
     enable:
       - atomicalign
@@ -552,15 +547,10 @@ linters-settings:
       - name: indent-error-flow
         severity: warning
   staticcheck:
-    # Select the Go version to target. The default is '1.13'.
-    go: "1.16"
     # https://staticcheck.io/docs/options#checks
     checks: [ "all" ]
 
   stylecheck:
-    # Select the Go version to target. The default is '1.13'.
-    go: "1.16"
-
     # https://staticcheck.io/docs/options#checks
     checks: [ "all", "-ST1000", "-ST1003", "-ST1016", "-ST1020", "-ST1021", "-ST1022" ]
     # https://staticcheck.io/docs/options#dot_import_whitelist
@@ -701,7 +691,6 @@ linters:
     - errcheck
     - errorlint
     - exhaustive
-    - exhaustivestruct
     - exportloopref
     - forbidigo
     - funlen
