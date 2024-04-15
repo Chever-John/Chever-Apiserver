@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Copyright 2024 Chenwei Jiang <cheverjonathan@gmail.com>. All rights reserved.
+# Use of this source code is governed by a MIT style
+# license that can be found in the LICENSE file.
+
+
 # 本脚本功能：根据 scripts/environment.sh 配置，生成 IAM 组件 YAML 配置文件。
 # 命令执行示例：generate_config.sh scripts/environment.sh configs/iam-apiserver.yaml
 

@@ -1,3 +1,7 @@
+// Copyright 2024 Chenwei Jiang <cheverjonathan@gmail.com>. All rights reserved.
+// Use of this source code is governed by a MIT style
+// license that can be found in the LICENSE file.
+
 /*
 Package posixsignal provides a listener for a posix signal. By default,
 it listens for SIGINT and SIGTERM, but others can be chosen in NewPosixSignalManager.
