@@ -14,6 +14,8 @@ import (
 )
 
 func Test_Options_Validate(t *testing.T) {
+	t.Parallel()
+
 	opts := &log.Options{
 		Level:            "test",
 		Format:           "test",

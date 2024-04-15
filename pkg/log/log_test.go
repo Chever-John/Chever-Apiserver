@@ -14,6 +14,8 @@ import (
 )
 
 func Test_WithName(t *testing.T) {
+	t.Parallel()
+
 	defer log.Flush() // used for record logger printer
 
 	logger := log.WithName("test")
@@ -21,6 +23,8 @@ func Test_WithName(t *testing.T) {
 }
 
 func Test_WithValues(t *testing.T) {
+	t.Parallel()
+
 	defer log.Flush() // used for record logger printer
 
 	logger := log.WithValues("key", "value") // used for record context
@@ -29,6 +33,8 @@ func Test_WithValues(t *testing.T) {
 }
 
 func Test_V(t *testing.T) {
+	t.Parallel()
+
 	defer log.Flush() // used for record logger printer
 
 	log.V(0).Infow("Hello world!", "key", "value")
@@ -36,6 +42,8 @@ func Test_V(t *testing.T) {
 }
 
 func Test_Option(t *testing.T) {
+	t.Parallel()
+
 	fs := pflag.NewFlagSet("test", pflag.ExitOnError)
 	opt := log.NewOptions()
 	opt.AddFlags(fs)
