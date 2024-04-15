@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Copyright 2024 Chenwei Jiang <cheverjonathan@gmail.com>. All rights reserved.
+# Use of this source code is governed by a MIT style
+# license that can be found in the LICENSE file.
+
+
 PROJECT_NAME="cas"
 GEN_CFG_ENV=${GEN_CFG_ENV:-'Linux'}
 # Chever-ApiServer 项目源码根目录，项目简称为 CAS（Chever ApiServer）。

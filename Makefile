@@ -2,7 +2,7 @@
 .DEFAULT_GOAL := all
 
 .PHONY: all
-all: tidy format format lint build
+all: tidy add-copyright format lint build
 
 
 ROOT_PACKAGE=github.com/Chever-John/cas
@@ -12,6 +12,7 @@ include scripts/make-rules/common.mk # make sure include common.mk at the first 
 include scripts/make-rules/golang.mk
 include scripts/make-rules/image.mk
 include scripts/make-rules/deploy.mk
+include scripts/make-rules/copyright.mk
 include scripts/make-rules/gen.mk
 include scripts/make-rules/swagger.mk
 include scripts/make-rules/tools.mk
@@ -110,6 +111,16 @@ format: tools.verify.golines tools.verify.goimports
 	@$(FIND) -type f -name '*.go' | $(XARGS) goimports -w -local $(ROOT_PACKAGE)
 	@$(FIND) -type f -name '*.go' | $(XARGS) golines -w --max-len=120 --reformat-tags --shorten-comments --ignore-generated .
 	@$(GO) mod edit -fmt
+
+## verify-copyright: Verify the boilerplate headers for all files.
+.PHONY: verify-copyright
+verify-copyright:
+	@$(MAKE) copyright.verify
+
+## add-copyright: Ensures source code files have copyright license headers.
+.PHONY: add-copyright
+add-copyright:
+	@$(MAKE) copyright.add
 
 ## swagger: Generate swagger document.
 .PHONY: swagger

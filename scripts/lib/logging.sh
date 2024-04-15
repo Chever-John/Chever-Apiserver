@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Copyright 2024 Chenwei Jiang <cheverjonathan@gmail.com>. All rights reserved.
+# Use of this source code is governed by a MIT style
+# license that can be found in the LICENSE file.
+
+
 # Controls verbosity of the script output and logging.
 CAS_VERBOSE="${CAS_VERBOSE:-5}"
 
