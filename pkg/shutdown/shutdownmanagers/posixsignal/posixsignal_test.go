@@ -25,6 +25,8 @@ func (f startShutdownFunc) AddShutdownCallback(shutdownCallback shutdown.Shutdow
 }
 
 func waitSig(t *testing.T, c <-chan int) {
+	t.Helper()
+
 	select {
 	case <-c:
 
@@ -34,41 +36,63 @@ func waitSig(t *testing.T, c <-chan int) {
 }
 
 func TestStartShutdownCalledOnDefaultSignals(t *testing.T) {
+	t.Parallel()
+
 	c := make(chan int, 100)
 
 	psm := NewPosixSignalManager()
-	psm.Start(startShutdownFunc(func(sm shutdown.ShutdownManager) {
+	err := psm.Start(startShutdownFunc(func(sm shutdown.ShutdownManager) {
 		c <- 1
 	}))
+	if err != nil {
+		return
+	}
 
 	time.Sleep(time.Millisecond)
 
-	syscall.Kill(syscall.Getpid(), syscall.SIGINT)
+	err = syscall.Kill(syscall.Getpid(), syscall.SIGINT)
+	if err != nil {
+		return
+	}
 
 	waitSig(t, c)
 
-	psm.Start(startShutdownFunc(func(sm shutdown.ShutdownManager) {
+	err = psm.Start(startShutdownFunc(func(sm shutdown.ShutdownManager) {
 		c <- 1
 	}))
+	if err != nil {
+		return
+	}
 
 	time.Sleep(time.Millisecond)
 
-	syscall.Kill(syscall.Getpid(), syscall.SIGTERM)
+	err = syscall.Kill(syscall.Getpid(), syscall.SIGTERM)
+	if err != nil {
+		return
+	}
 
 	waitSig(t, c)
 }
 
 func TestStartShutdownCalledCustomSignal(t *testing.T) {
+	t.Parallel()
+
 	c := make(chan int, 100)
 
 	psm := NewPosixSignalManager(syscall.SIGHUP)
-	psm.Start(startShutdownFunc(func(sm shutdown.ShutdownManager) {
+	err := psm.Start(startShutdownFunc(func(sm shutdown.ShutdownManager) {
 		c <- 1
 	}))
+	if err != nil {
+		return
+	}
 
 	time.Sleep(time.Millisecond)
 
-	syscall.Kill(syscall.Getpid(), syscall.SIGHUP)
+	err = syscall.Kill(syscall.Getpid(), syscall.SIGHUP)
+	if err != nil {
+		return
+	}
 
 	waitSig(t, c)
 }

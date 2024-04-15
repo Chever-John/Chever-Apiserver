@@ -1,6 +1,6 @@
 module github.com/Chever-John/cas
 
-go 1.22.1
+go 1.22
 
 require (
 	github.com/Chever-John/component-base v0.1.5

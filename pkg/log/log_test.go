@@ -1,20 +1,6 @@
-/*
- * Tencent is pleased to support the open source community by making TKEStack
- * available.
- *
- * Copyright (C) 2012-2019 Tencent. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use
- * this file except in compliance with the License. You may obtain a copy of the
- * License at
- *
- * https://opensource.org/licenses/Apache-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OF ANY KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations under the License.
- */
+// Copyright 2024 Chenwei Jiang <cheverjonathan@gmail.com>. All rights reserved.
+// Use of this source code is governed by a MIT style
+// license that can be found in the LICENSE file.
 
 package log_test
 
@@ -28,6 +14,8 @@ import (
 )
 
 func Test_WithName(t *testing.T) {
+	t.Parallel()
+
 	defer log.Flush() // used for record logger printer
 
 	logger := log.WithName("test")
@@ -35,6 +23,8 @@ func Test_WithName(t *testing.T) {
 }
 
 func Test_WithValues(t *testing.T) {
+	t.Parallel()
+
 	defer log.Flush() // used for record logger printer
 
 	logger := log.WithValues("key", "value") // used for record context
@@ -43,6 +33,8 @@ func Test_WithValues(t *testing.T) {
 }
 
 func Test_V(t *testing.T) {
+	t.Parallel()
+
 	defer log.Flush() // used for record logger printer
 
 	log.V(0).Infow("Hello world!", "key", "value")
@@ -50,6 +42,8 @@ func Test_V(t *testing.T) {
 }
 
 func Test_Option(t *testing.T) {
+	t.Parallel()
+
 	fs := pflag.NewFlagSet("test", pflag.ExitOnError)
 	opt := log.NewOptions()
 	opt.AddFlags(fs)
