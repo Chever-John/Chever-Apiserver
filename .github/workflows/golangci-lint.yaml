@@ -6,8 +6,10 @@ name: CI
 
 on:
   push:
-    branchs:
+    branches:
       - '*'
+    paths-ignore:
+      - 'docs/**'
   pull_request:
     types: [opened, reopened]
 
