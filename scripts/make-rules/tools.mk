@@ -49,7 +49,7 @@ install.coscli:
 
 .PHONY: install.coscmd
 install.coscmd:
-	@if which pip &>/dev/null; then pip install coscmd; else pip3 install coscmd; fi
+	@if which pip &>/dev/null; then pip install coscmd; else pip3 install coscmd --user; fi
 
 .PHONY: install.golines
 install.golines:

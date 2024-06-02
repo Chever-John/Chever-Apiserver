@@ -23,11 +23,11 @@ func installController(g *gin.Engine) *gin.Engine {
 	v1 := g.Group("/v1")
 	{
 		// helloer RESTful resource
-		helloerv1 := v1.Group("/helloers")
+		helloerV1 := v1.Group("/helloers")
 		{
 			helloerController := hello.NewHelloerController()
 
-			helloerv1.GET("", helloerController.Greet)
+			helloerV1.GET("", helloerController.Greet)
 		}
 	}
 

@@ -175,7 +175,6 @@ linters-settings:
       - truncateCmp
       - unnamedResult
       - ruleguard
-      - ruleguard
 
     # Which checks should be disabled; can't be combined with 'enabled-checks'; default is empty
     disabled-checks:

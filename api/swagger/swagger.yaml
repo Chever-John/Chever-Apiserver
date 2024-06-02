@@ -1,10 +1,11 @@
-# Copyright 2024 Chenwei Jiang <cheverjonathan@gmail.com>. All rights reserved.
-# Use of this source code is governed by a MIT style
-# license that can be found in the LICENSE file.
-
 basePath: /
 consumes:
     - application/json
+definitions:
+    ErrResponse:
+        description: Reference will be omitted if it does not exist.
+        title: ErrResponse defines the return messages when an error occurred.
+        x-go-package: github.com/marmotedu/component-base/pkg/core
 host: some-url.com
 info:
     description: Documentation of our awesome API.
