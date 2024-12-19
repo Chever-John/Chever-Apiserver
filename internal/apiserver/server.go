@@ -30,6 +30,8 @@ type ExtraConfig struct {
 	// etcdOptions      *genericoptions.EtcdOptions
 }
 
+// createApiServer Create the APIServer instance according to the configuration.
+// this func will set up the server router and port and tls config.
 func createApiServer(cfg *config.Config) (*apiServer, error) {
 	gs := shutdown.New()
 	gs.AddShutdownManager(posixsignal.NewPosixSignalManager())

@@ -182,7 +182,7 @@ func (f ShutdownFunc) OnShutdown(shutdownManager string) error {
 	return f(shutdownManager)
 }
 
-// ShutdownManager is an interface implemnted by ShutdownManagers.
+// ShutdownManager is an interface implemented by ShutdownManagers.
 // GetName returns the name of ShutdownManager.
 // ShutdownManagers start listening for shutdown requests in Start.
 // When they call StartShutdown on GSInterface,
@@ -248,7 +248,7 @@ func (gs *GracefulShutdown) Start() error {
 	return nil
 }
 
-// AddShutdownManager adds a ShutdownManager that will listen to shutdown requests.
+// AddShutdownManager adds a ShutdownManager that will listen to shut down requests.
 func (gs *GracefulShutdown) AddShutdownManager(manager ShutdownManager) {
 	gs.managers = append(gs.managers, manager)
 }
